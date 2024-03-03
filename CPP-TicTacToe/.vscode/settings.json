@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.env": "env",
+        "iostream": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp"
+    }
+}
