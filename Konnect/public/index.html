@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konnect</title>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">
+        <h2>Konnect</h2>
+        <p>Global Chat</p>
+      </div>
+      <div>
+        <p id="username">Please Wait.....</p>
+        <p id="onlineCount"></p>
+      </div>
+    </div>
+    <spacer style="flex: 1"></spacer>
+    <ul id="messagesContainer"></ul>
+    <div class="inputBox" style="display: none">
+      <input id="filePicker" hidden type="file" />
+      <button onclick="filePicker.click()" class="action" tabindex="1">
+        📷
+      </button>
+      <img id="imagePickerPreview" hidden />
+      <button id="cancelImagePick" hidden class="action" tabindex="2">
+        ❌
+      </button>
+      <input
+        type="text"
+        tabindex="0"
+        id="inputField"
+        placeholder="Start typing"
+      />
+      <button id="sendButton" tabindex="-1">>></button>
+    </div>
+  </body>
+
+  <script src="socket.io.js" type="text/javascript"></script>
+  <script src="index.js"></script>
+  <script src="helpers.js"></script>
+</html>

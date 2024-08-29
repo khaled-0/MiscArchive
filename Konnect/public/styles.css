@@ -1,0 +1,168 @@
+body,
+html,
+* {
+  margin: 0;
+  font-family: "noto sans";
+  box-sizing: border-box;
+
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  --primaryColor: cornflowerblue;
+  --backgroundColor: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    --backgroundColor: black !important;
+    color: #fff;
+  }
+  body {
+    background-color: var(--backgroundColor);
+  }
+}
+
+body {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  line-height: 1.5rem;
+  padding: 0.5rem;
+  background-color: var(--primaryColor);
+  color: #fff;
+  display: flex;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  z-index: 10;
+}
+
+.header .title {
+  flex: 1;
+}
+
+.header #username {
+  text-align: right;
+}
+
+.header #onlineCount {
+  font-size: small;
+  text-align: right;
+}
+
+.inputBox {
+  position: fixed;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--backgroundColor);
+
+  z-index: 10;
+}
+
+.inputBox > input {
+  flex: 1;
+  height: 3.25rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--primaryColor);
+  background-color: var(--backgroundColor);
+}
+
+.inputBox > input:focus {
+  border: none;
+}
+
+.inputBox > button {
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid var(--primaryColor);
+  background-color: var(--backgroundColor);
+}
+
+.inputBox > #sendButton {
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--primaryColor);
+}
+
+.inputBox > button:active {
+  scale: 0.85;
+}
+
+.inputBox .action {
+  border: none;
+  cursor: pointer;
+  font-size: x-large;
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+#messagesContainer {
+  overflow: scroll;
+  padding: 0;
+  /* Offset the bottom input field */
+  margin-bottom: 4.5rem;
+}
+
+#messagesContainer > li {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  background-color: var(--primaryColor);
+  color: white;
+}
+
+#messagesContainer > li > span {
+  font-size: small;
+  cursor: alias;
+}
+
+#messagesContainer > li[data-self="true"] {
+  margin-left: auto;
+  border: 1px solid var(--primaryColor);
+  word-break: break-word;
+  max-width: 60%;
+}
+
+#messagesContainer > li::marker {
+  content: "";
+}
+
+#messagesContainer .broadcast {
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+  font-size: small;
+}
+
+.inputBox #imagePickerPreview {
+  height: 10rem;
+  width: 10rem;
+  object-fit: contain;
+  flex: 1;
+}
+
+#messagesContainer > li > img {
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  margin-top: 0.25rem;
+  border-radius: 1rem;
+}
