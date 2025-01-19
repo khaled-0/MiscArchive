@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -e
+
+# Switch authentication and update .gitconfig
+switch_auth() {
+    # Switch gh auth context
+    gh auth switch $1
+
+    # Check if the switch was successful
+    if [ $? -eq 0 ]; then
+
+        # Fetch user information from GitHub
+        user_info=$(gh api user)
+
+        # Extract user name and email
+        login=$(echo $user_info | jq -r '.login')
+        user_name=$(echo $user_info | jq -r '.name')
+        user_email=$(echo $user_info | jq -r '.email')
+        echo "Switched to $login context successfully."
+
+        if [ -z "$user_name" ] || [ -z "$user_email" ]; then
+            echo "Failed to fetch user name or email."
+            exit 1
+        fi
+
+        # Update .gitconfig with the fetched user info
+        git config --global user.name "$user_name"
+        git config --global user.email "$user_email"
+
+        echo ".gitconfig updated for $1 context with name: $user_name and email: $user_email."
+    else
+        echo "Failed to switch auth context."
+        exit 1
+    fi
+}
+
+# Call the function with the provided context
+switch_auth $1
